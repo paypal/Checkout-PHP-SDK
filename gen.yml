@@ -1,0 +1,6 @@
+---
+projectName: CheckoutPHPSDK
+language: php
+sourcePath: lib/CheckoutPhpsdk
+testPath: tests
+apiVersioning: false

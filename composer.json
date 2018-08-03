@@ -1,0 +1,23 @@
+{
+    "name": "/CheckoutPHPSDK",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "braintree/braintreehttp": "0.3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "CheckoutPhpsdk\\": "lib/CheckoutPhpsdk",
+            "Sample\\": "samples"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\":"tests"
+        }
+    },
+  "description": "Checkout SDK"
+}
