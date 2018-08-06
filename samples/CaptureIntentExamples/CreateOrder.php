@@ -110,7 +110,7 @@ class CreateOrder
     {
         $request = new OrdersCreateRequest();
         $request->prefer('return=representation');
-        $request->authorization("Bearer " . "A21AAF8VHFvjg3KakxaZ0geZbqdodpVcTci0yIqX6mbgfcEtK3nvxUvMdAgkS-Of3-QMsNSVaaLXNa02H-a6PG60Liv8vgv1g");
+        $request->authorization("Bearer " . Skeleton::authToken());
         $request->body = self::buildRequestBody();
 
         $client = Skeleton::client();

@@ -12,7 +12,7 @@ class CaptureOrder
     public static function captureOrder($orderId, $debug=false)
     {
         $request = new OrdersCaptureRequest($orderId);
-        $request->authorization("Bearer " . "A21AAF8VHFvjg3KakxaZ0geZbqdodpVcTci0yIqX6mbgfcEtK3nvxUvMdAgkS-Of3-QMsNSVaaLXNa02H-a6PG60Liv8vgv1g");
+        $request->authorization("Bearer " . Skeleton::authToken());
 
         $client = Skeleton::client();
         $response = $client->execute($request);
