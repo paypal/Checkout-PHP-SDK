@@ -25,7 +25,7 @@ $authToken = $response->result->access_token;
 $request = new OrdersCreateRequest();
 $request->prefer('return=representation');
 $request->authorization("Bearer " . authToken);
-request->body = json_decode("{
+$request->body = json_decode("{
                                 "intent": "CAPTURE",
                                 "purchase_units": [
                                     {
@@ -177,14 +177,8 @@ Status: COMPLETED
 
 ## Samples
 
-You can start off by trying out [creating and capturing an order](/samples/CaptureIntentExamples/runAll.js)
+You can start off by trying out [creating and capturing an order](/samples/CaptureIntentExamples/RunAll.php)
 
 To try out different samples for both create and authorize intent check [this link](/samples)
-
-## Note
-
-Http Client used as part of this project returns Promises
-
-You can read more about Promises here: https://www.promisejs.org/
 
 
