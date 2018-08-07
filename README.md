@@ -1,6 +1,6 @@
 # REST API SDK for PHP V2
 
-![Home Image](https://raw.githubusercontent.com/wiki/paypal/PayPal-PHP-SDK/images/homepage.jpg)
+![Home Image](homepage.jpg)
 
 __Welcome to PayPal PHP SDK__. This repository contains PayPal's PHP SDK and samples for REST API.
 
