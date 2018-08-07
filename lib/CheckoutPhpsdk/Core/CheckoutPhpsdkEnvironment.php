@@ -8,6 +8,6 @@ class CheckoutPhpsdkEnvironment implements Environment
 {
     public function baseUrl()
     {
-        throw new Exception("Not implemented");
+        return getenv('BASE_URL');
     }
 }

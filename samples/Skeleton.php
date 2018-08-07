@@ -4,27 +4,19 @@ namespace Sample;
 
 //require __DIR__ . '/../vendor/autoload.php';
 use CheckoutPhpsdk\Core\CheckoutPhpsdkHttpClient;
-use BraintreeHttp\Environment;
+use CheckoutPhpsdk\Core\CheckoutPhpsdkEnvironment;
 //use Sample\PaypalAuthenticationToken;
 
 ini_set('error_reporting', E_ALL); // or error_reporting(E_ALL);
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 
-class SkeletonEnvironment implements Environment
-{
-    public function baseUrl()
-    {
-        return getenv("BASE_URL");
-    }
-}
-
 class Skeleton
 {
 
     public static function client()
     {
-        $environment = new SkeletonEnvironment();
+        $environment = new CheckoutPhpsdkEnvironment();
         return new CheckoutPhpsdkHttpClient($environment);
     }
     public static function authToken(){
