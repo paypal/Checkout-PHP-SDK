@@ -7,9 +7,23 @@ __Welcome to PayPal PHP SDK__. This repository contains PayPal's PHP SDK and sam
 
 This is a part of the next major PayPal SDK. It includes a simplified interface to only provide simple model objects and blueprints for HTTP calls. This repo currently contains functionality for PayPal Checkout APIs which includes Orders V2 and Payments V2.
 
-## Examples
-### Creating an Order
-#### Code to Execute:
+## Please Note
+> **The Payment Card Industry (PCI) Council has [mandated](http://blog.pcisecuritystandards.org/migrating-from-ssl-and-early-tls) that early versions of TLS be retired from service.  All organizations that handle credit card information are required to comply with this standard. As part of this obligation, PayPal is updating its services to require TLS 1.2 for all HTTPS connections. At this time, PayPal will also require HTTP/1.1 for all connections. [Click here](https://github.com/paypal/tls-update) for more information. Connections to the sandbox environment use only TLS 1.2.**
+
+## Direct Credit Card Support
+> **Important: The PayPal REST API no longer supports new direct credit card integrations.**  Please instead consider [Braintree Direct](https://www.braintreepayments.com/products/braintree-direct); which is, PayPal's preferred integration solution for accepting direct credit card payments in your mobile app or website. Braintree, a PayPal service, is the easiest way to accept credit cards, PayPal, and many other payment methods.
+
+## Prerequisites
+
+PHP 5.6 and above
+
+An environment which supports TLS 1.2 (see the TLS-update site for more information)
+
+## Usage
+
+### Setting up credentials
+Get client ID and client secret by going to https://developer.paypal.com/developer/applications and generating a REST API app. Get <b>Client ID</b> and <b>Secret</b> from there.
+
 ```php
 
 // Creating an environment
@@ -24,7 +38,12 @@ $authorization->credentials($client_id, $client_password);
 $client = self::client();
 $response = $client->execute($authorization);
 $authToken = $response->result->access_token;
+```
 
+## Examples
+### Creating an Order
+#### Code:
+```php
 // Construct a request object and set desired parameters
 // Here, OrdersCreateRequest() creates a POST request to /v2/checkout/orders
 $request = new OrdersCreateRequest();
