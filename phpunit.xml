@@ -2,9 +2,8 @@
 <phpunit bootstrap="./vendor/autoload.php">
 
   <testsuites>
-    <testsuite name="unit">
+    <testsuite name="integration">
       <directory>./tests/</directory>
     </testsuite>
   </testsuites>
-
 </phpunit>

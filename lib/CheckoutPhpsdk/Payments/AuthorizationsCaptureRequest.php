@@ -21,10 +21,7 @@ class AuthorizationsCaptureRequest extends HttpRequest
         $this->headers["Content-Type"] = "application/json";
     }
 
-    public function authorization($authorization)
-    {
-        $this->headers["Authorization"] = $authorization;
-    }
+
     public function payPalRequestId($payPalRequestId)
     {
         $this->headers["PayPal-Request-Id"] = $payPalRequestId;

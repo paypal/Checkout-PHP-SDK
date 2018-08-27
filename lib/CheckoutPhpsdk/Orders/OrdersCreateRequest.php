@@ -19,10 +19,7 @@ class OrdersCreateRequest extends HttpRequest
         $this->headers["Content-Type"] = "application/json";
     }
 
-    public function authorization($authorization)
-    {
-        $this->headers["Authorization"] = $authorization;
-    }
+
     public function payPalPartnerAttributionId($payPalPartnerAttributionId)
     {
         $this->headers["PayPal-Partner-Attribution-Id"] = $payPalPartnerAttributionId;

@@ -21,9 +21,6 @@ class OrdersPatchRequest extends HttpRequest
         $this->headers["Content-Type"] = "application/json";
     }
 
-    public function authorization($authorization)
-    {
-        $this->headers["Authorization"] = $authorization;
-    }
+
     
 }

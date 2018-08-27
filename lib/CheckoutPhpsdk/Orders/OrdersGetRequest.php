@@ -20,10 +20,7 @@ class OrdersGetRequest extends HttpRequest
         $this->path = str_replace("{order_id}", urlencode($orderId), $this->path);
         $this->headers["Content-Type"] = "application/json";
     }
-    public function authorization($authorization)
-    {
-        $this->headers["Authorization"] = $authorization;
-    }
+
 
     
 }

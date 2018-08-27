@@ -5,111 +5,129 @@ namespace Sample\AuthorizeIntentExamples;
 require __DIR__ . '/../../vendor/autoload.php';
 
 use CheckoutPhpsdk\Orders\OrdersCreateRequest;
-use Sample\Skeleton;
+use Sample\SampleSkeleton;
 
 class CreateOrder
 {
     private static function buildRequestBody()
     {
-        return json_decode('{
-          "intent": "AUTHORIZE",
-          "application_context": {
-            "return_url": "https://example.com/return",
-            "cancel_url": "https://example.com/cancel",
-            "brand_name": "EXAMPLE INC",
-            "locale": "de-DE",
-            "landing_page": "BILLING",
-            "shipping_preferences": "SET_PROVIDED_ADDRESS",
-            "user_action": "PAY_NOW"
-          },
-          "purchase_units": [
-            {
-              "reference_id": "PUHF",
-              "description": "Sporting Goods",
-              "custom_id": "CUST-HighFashions",
-              "soft_descriptor": "HighFashions",
-              "amount": {
-                "currency_code": "USD",
-                "value": "220.00",
-                "breakdown": {
-                  "item_total": {
-                    "currency_code": "USD",
-                    "value": "180.00"
-                  },
-                  "shipping": {
-                    "currency_code": "USD",
-                    "value": "20.00"
-                  },
-                  "handling": {
-                    "currency_code": "USD",
-                    "value": "10.00"
-                  },
-                  "tax_total": {
-                    "currency_code": "USD",
-                    "value": "20.00"
-                  },
-                  "shipping_discount": {
-                    "currency_code": "USD",
-                    "value": "10.00"
-                  }
-                }
-              },
-              "items": [
-                {
-                  "name": "T-Shirt",
-                  "description": "Green XL",
-                  "sku": "sku01",
-                  "unit_amount": {
-                    "currency_code": "USD",
-                    "value": "90.00"
-                  },
-                  "tax": {
-                    "currency_code": "USD",
-                    "value": "10.00"
-                  },
-                  "quantity": "1",
-                  "category": "PHYSICAL_GOODS"
-                },
-                {
-                  "name": "Shoes",
-                  "description": "Running, Size 10.5",
-                  "sku": "sku02",
-                  "unit_amount": {
-                    "currency_code": "USD",
-                    "value": "45.00"
-                  },
-                  "tax": {
-                    "currency_code": "USD",
-                    "value": "5.00"
-                  },
-                  "quantity": "2",
-                  "category": "PHYSICAL_GOODS"
-                }
-              ],
-              "shipping": {
-                "method": "United States Postal Service",
-                "address": {
-                  "address_line_1": "123 Townsend St",
-                  "address_line_2": "Floor 6",
-                  "admin_area_2": "San Francisco",
-                  "admin_area_1": "CA",
-                  "postal_code": "94107",
-                  "country_code": "US"
-                }
-              }
-            }
-          ]
-        }', true);
+        return array(
+            'intent' => 'AUTHORIZE',
+            'application_context' =>
+                array(
+                    'return_url' => 'https://example.com/return',
+                    'cancel_url' => 'https://example.com/cancel',
+                    'brand_name' => 'EXAMPLE INC',
+                    'locale' => 'de-DE',
+                    'landing_page' => 'BILLING',
+                    'shipping_preferences' => 'SET_PROVIDED_ADDRESS',
+                    'user_action' => 'PAY_NOW',
+                ),
+            'purchase_units' =>
+                array(
+                    0 =>
+                        array(
+                            'reference_id' => 'PUHF',
+                            'description' => 'Sporting Goods',
+                            'custom_id' => 'CUST-HighFashions',
+                            'soft_descriptor' => 'HighFashions',
+                            'amount' =>
+                                array(
+                                    'currency_code' => 'USD',
+                                    'value' => '220.00',
+                                    'breakdown' =>
+                                        array(
+                                            'item_total' =>
+                                                array(
+                                                    'currency_code' => 'USD',
+                                                    'value' => '180.00',
+                                                ),
+                                            'shipping' =>
+                                                array(
+                                                    'currency_code' => 'USD',
+                                                    'value' => '20.00',
+                                                ),
+                                            'handling' =>
+                                                array(
+                                                    'currency_code' => 'USD',
+                                                    'value' => '10.00',
+                                                ),
+                                            'tax_total' =>
+                                                array(
+                                                    'currency_code' => 'USD',
+                                                    'value' => '20.00',
+                                                ),
+                                            'shipping_discount' =>
+                                                array(
+                                                    'currency_code' => 'USD',
+                                                    'value' => '10.00',
+                                                ),
+                                        ),
+                                ),
+                            'items' =>
+                                array(
+                                    0 =>
+                                        array(
+                                            'name' => 'T-Shirt',
+                                            'description' => 'Green XL',
+                                            'sku' => 'sku01',
+                                            'unit_amount' =>
+                                                array(
+                                                    'currency_code' => 'USD',
+                                                    'value' => '90.00',
+                                                ),
+                                            'tax' =>
+                                                array(
+                                                    'currency_code' => 'USD',
+                                                    'value' => '10.00',
+                                                ),
+                                            'quantity' => '1',
+                                            'category' => 'PHYSICAL_GOODS',
+                                        ),
+                                    1 =>
+                                        array(
+                                            'name' => 'Shoes',
+                                            'description' => 'Running, Size 10.5',
+                                            'sku' => 'sku02',
+                                            'unit_amount' =>
+                                                array(
+                                                    'currency_code' => 'USD',
+                                                    'value' => '45.00',
+                                                ),
+                                            'tax' =>
+                                                array(
+                                                    'currency_code' => 'USD',
+                                                    'value' => '5.00',
+                                                ),
+                                            'quantity' => '2',
+                                            'category' => 'PHYSICAL_GOODS',
+                                        ),
+                                ),
+                            'shipping' =>
+                                array(
+                                    'method' => 'United States Postal Service',
+                                    'address' =>
+                                        array(
+                                            'address_line_1' => '123 Townsend St',
+                                            'address_line_2' => 'Floor 6',
+                                            'admin_area_2' => 'San Francisco',
+                                            'admin_area_1' => 'CA',
+                                            'postal_code' => '94107',
+                                            'country_code' => 'US',
+                                        ),
+                                ),
+                        ),
+                ),
+        );
     }
 
     public static function createOrder($debug=false)
     {
         $request = new OrdersCreateRequest();
         $request->prefer('return=representation');
-        $request->authorization("Bearer " . Skeleton::authToken());
         $request->body = CreateOrder::buildRequestBody();
 
-        $client = Skeleton::client();
+        $client = SampleSkeleton::client();
         $response = $client->execute($request);
         if ($debug)
         {

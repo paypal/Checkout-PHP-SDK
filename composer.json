@@ -16,8 +16,12 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Test\\":"tests"
+            "Test\\":"tests/"
         }
     },
-  "description": "Checkout SDK"
+    "scripts": {
+        "unit": "phpunit --testsuite unit",
+        "integration": "phpunit --testsuite integration"
+    },
+    "description": "Checkout SDK"
 }

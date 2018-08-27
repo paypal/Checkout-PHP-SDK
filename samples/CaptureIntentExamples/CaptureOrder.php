@@ -5,16 +5,15 @@ namespace Sample\CaptureIntentExamples;
 
 require __DIR__ . '/../../vendor/autoload.php';
 use CheckoutPhpsdk\Orders\OrdersCaptureRequest;
-use Sample\Skeleton;
+use Sample\SampleSkeleton;
 
 class CaptureOrder
 {
     public static function captureOrder($orderId, $debug=false)
     {
         $request = new OrdersCaptureRequest($orderId);
-        $request->authorization("Bearer " . Skeleton::authToken());
 
-        $client = Skeleton::client();
+        $client = SampleSkeleton::client();
         $response = $client->execute($request);
         if ($debug)
         {

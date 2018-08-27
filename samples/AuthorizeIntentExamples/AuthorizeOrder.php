@@ -10,7 +10,7 @@ namespace Sample\AuthorizeIntentExamples;
 
 require __DIR__ . '/../../vendor/autoload.php';
 use CheckoutPhpsdk\Orders\OrdersAuthorizeRequest;
-use Sample\Skeleton;
+use Sample\SampleSkeleton;
 
 
 class AuthorizeOrder
@@ -22,10 +22,9 @@ class AuthorizeOrder
     public static function authorizeOrder($orderId, $debug=false)
     {
         $request = new OrdersAuthorizeRequest($orderId);
-        $request->authorization("Bearer " . Skeleton::authToken());
         $request->body = self::buildRequestBody();
 
-        $client = Skeleton::client();
+        $client = SampleSkeleton::client();
         $response = $client->execute($request);
         if ($debug)
         {

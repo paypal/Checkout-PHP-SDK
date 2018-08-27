@@ -25,19 +25,14 @@ An environment which supports TLS 1.2 (see the TLS-update site for more informat
 Get client ID and client secret by going to https://developer.paypal.com/developer/applications and generating a REST API app. Get <b>Client ID</b> and <b>Secret</b> from there.
 
 ```php
-
+use CheckoutPhpsdk\Core\PayPalHttpClient;
+use CheckoutPhpsdk\Core\SandboxEnvironment;
 // Creating an environment
-$environment = new CheckoutPhpsdkEnvironment();
-$client = new CheckoutPhpsdkHttpClient($environment);
-
-// Creating Access Token for Sandbox
 $clientId = "AVNCVvV9oQ7qee5O8OW4LSngEeU1dI7lJAGCk91E_bjrXF2LXB2TK2ICXQuGtpcYSqs4mz1BMNQWuso1";
 $clientSecret = "EDQzd81k-1z2thZw6typSPOTEjxC_QbJh6IithFQuXdRFc7BjVht5rQapPiTaFt5RC-HCa1ir6mi-H5l";
-$request = new PaypalAuthenticationToken();
-$authorization->credentials($client_id, $client_password);
-$client = self::client();
-$response = $client->execute($authorization);
-$authToken = $response->result->access_token;
+
+$environment = new SandBoxEnvironment($clientUd, $clientSecret);
+$client = new PayPalHttpClient($environment);
 ```
 
 ## Examples
@@ -48,18 +43,20 @@ $authToken = $response->result->access_token;
 // Here, OrdersCreateRequest() creates a POST request to /v2/checkout/orders
 $request = new OrdersCreateRequest();
 $request->prefer('return=representation');
-$request->authorization("Bearer " . authToken);
-$request->body = json_decode("{
-                                "intent": "CAPTURE",
-                                "purchase_units": [
-                                    {
-                                        "amount": {
-                                            "currency_code": "USD",
-                                            "value": "100.00"
-                                        }
-                                    }
-                                 ]
-                              }", true);
+$request->body = [
+                     "intent" => "CAPTURE",
+                     "purchase_units" => [[
+                         "reference_id" => "test_ref_id1",
+                         "amount" => [
+                             "value" => "100.00",
+                             "currency_code" => "USD"
+                         ]
+                     ]],
+                     "redirect_urls" => [
+                          "cancel_url" => "https://example.com/cancel",
+                          "return_url" => "https://example.com/return"
+                     ] 
+                 ];
 
 try {
     // Call API with your client and get a response for your call
@@ -110,7 +107,6 @@ Status: CREATED
 // $response->result->id gives the orderId of the order created above
 $request = new OrdersCaptureRequest($response->result->id);
 $request->prefer('return=representation');
-$request->authorization("Bearer " . authToken);
 $request.requestBody({});
 
 try {
@@ -184,7 +180,7 @@ Payer:
 	Name:
 		Given_name: test
 		Surname: buyer
-	Email_address: ganeshramc-buyer@live.com
+	Email_address: test-buyer@paypal.com
 	Payer_id: KWADC7LXRRWCE
 	Phone:
 		Phone_number:
@@ -198,6 +194,16 @@ Links:
 		Method: GET
 Status: COMPLETED
 ```
+
+## Running tests
+
+To run integration tests using your client id and secret, clone this repository and run the following command:
+```sh
+$ composer install
+$ composer integration
+```
+
+*NOTE*: This API is still in beta, is subject to change, and should not be used in production.
 
 ## Samples
 

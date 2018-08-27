@@ -10,7 +10,7 @@ namespace Sample\AuthorizeIntentExamples;
 
 require __DIR__ . '/../../vendor/autoload.php';
 use CheckoutPhpsdk\Payments\AuthorizationsCaptureRequest;
-use Sample\Skeleton;
+use Sample\SampleSkeleton;
 
 class CaptureOrder
 {
@@ -22,9 +22,8 @@ class CaptureOrder
     public static function captureOrder($authorizationId, $debug=false)
     {
         $request = new AuthorizationsCaptureRequest($authorizationId);
-        $request->authorization("Bearer " . Skeleton::authToken());
         $request->body = self::buildRequestBody();
-        $client = Skeleton::client();
+        $client = SampleSkeleton::client();
         $response = $client->execute($request);
 
         if ($debug)
