@@ -12,13 +12,13 @@ class CreateOrder
     private static function buildRequestBody()
     {
         return array(
-            'intent' => 'AUTHORIZE',
+            'intent' => 'CAPTURE',
             'application_context' =>
                 array(
                     'return_url' => 'https://example.com/return',
                     'cancel_url' => 'https://example.com/cancel',
                     'brand_name' => 'EXAMPLE INC',
-                    'locale' => 'de-DE',
+                    'locale' => 'en-US',
                     'landing_page' => 'BILLING',
                     'shipping_preferences' => 'SET_PROVIDED_ADDRESS',
                     'user_action' => 'PAY_NOW',

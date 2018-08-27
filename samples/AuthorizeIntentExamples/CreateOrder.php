@@ -18,7 +18,7 @@ class CreateOrder
                     'return_url' => 'https://example.com/return',
                     'cancel_url' => 'https://example.com/cancel',
                     'brand_name' => 'EXAMPLE INC',
-                    'locale' => 'de-DE',
+                    'locale' => 'en-US',
                     'landing_page' => 'BILLING',
                     'shipping_preferences' => 'SET_PROVIDED_ADDRESS',
                     'user_action' => 'PAY_NOW',
@@ -140,8 +140,11 @@ class CreateOrder
             {
                 print "\t{$link->rel}: {$link->href}\tCall Type: {$link->method}\n";
             }
-            print "\nActual Response Body:\n";
-            echo json_encode($response->result, JSON_PRETTY_PRINT);
+
+            print "Gross Amount: {$response->result->gross_amount->currency_code} {$response->result->gross_amount->value}\n";
+
+            // To print the whole response body uncomment below line
+            // echo json_encode($response->result, JSON_PRETTY_PRINT);
         }
 
 
