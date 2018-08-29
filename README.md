@@ -203,7 +203,7 @@ $ composer install
 $ composer integration
 ```
 
-*NOTE*: This API is still in beta, is subject to change, and should not be used in production.
+*NOTE*: This SDK is still in beta, is subject to change, and should not be used in production.
 
 ## Samples
 
