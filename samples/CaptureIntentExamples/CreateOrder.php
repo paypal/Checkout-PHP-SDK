@@ -140,8 +140,9 @@ class CreateOrder
             {
                 print "\t{$link->rel}: {$link->href}\tCall Type: {$link->method}\n";
             }
-            print "\nActual Response Body:\n";
-            echo json_encode($response->result, JSON_PRETTY_PRINT);
+
+            // To print the whole response body uncomment below line
+            // echo json_encode($response->result, JSON_PRETTY_PRINT);
         }
 
 

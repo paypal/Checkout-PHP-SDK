@@ -45,17 +45,16 @@ class PatchOrder
         );
     }
 
-    public static function patchOrder()
+    public static function patchOrder($orderId)
     {
-        print "Before PATCH:\n";
-        $createdOrder = CreateOrder::createOrder(true)->result;
+
         $client = SampleSkeleton::client();
 
-        $request = new OrdersPatchRequest($createdOrder->id);
+        $request = new OrdersPatchRequest($orderId);
         $request->body = PatchOrder::buildRequestBody();
         $client->execute($request);
-        print "\nAfter PATCH (Changed Intent and Amount):\n";
-        $response = $client->execute(new OrdersGetRequest($createdOrder->id));
+
+        $response = $client->execute(new OrdersGetRequest($orderId));
 
         print "Status Code: {$response->statusCode}\n";
         print "Status: {$response->result->status}\n";
@@ -67,11 +66,17 @@ class PatchOrder
             print "\t{$link->rel}: {$link->href}\tCall Type: {$link->method}\n";
         }
 
-        print "Gross Amount: {$response->result->gross_amount->currency_code} {$response->result->gross_amount->value}\n";
+        print "Gross Amount: {$response->result->purchase_units[0]->amount->currency_code} {$response->result->purchase_units[0]->amount->value}\n";
+
+        // To print the whole response body uncomment below line
+        // echo json_encode($response->result, JSON_PRETTY_PRINT);
     }
 }
 
 if (!count(debug_backtrace()))
 {
-    PatchOrder::patchOrder();
+    print "Before PATCH:\n";
+    $createdOrder = CreateOrder::createOrder(true)->result;
+    print "\nAfter PATCH (Changed Intent and Amount):\n";
+    PatchOrder::patchOrder($createdOrder->id);
 }

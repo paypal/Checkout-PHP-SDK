@@ -16,6 +16,7 @@ class PayPalHttpClient extends HttpClient
         $this->authInjector = new AuthorizationInjector($this, $environment, $refreshToken);
         $this->addInjector($this->authInjector);
         $this->addInjector(new GzipInjector());
+        $this->addInjector(new FPTIInstrumentationInjector());
     }
 
     public function userAgent()

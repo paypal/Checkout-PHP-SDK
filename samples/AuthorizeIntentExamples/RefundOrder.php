@@ -1,20 +1,25 @@
 <?php
 
-
-namespace Sample\CaptureIntentExamples;
+namespace Sample\AuthorizeIntentExamples;
 
 require __DIR__ . '/../../vendor/autoload.php';
-use CheckoutPhpsdk\Orders\OrdersCaptureRequest;
+use CheckoutPhpsdk\Payments\CapturesRefundRequest;
 use Sample\SampleSkeleton;
 
-class CaptureOrder
+class RefundOrder
 {
-    public static function captureOrder($orderId, $debug=false)
+    public static function buildRequestBody()
     {
-        $request = new OrdersCaptureRequest($orderId);
+        return "{}";
+    }
 
+    public static function refundOrder($captureId, $debug=false)
+    {
+        $request = new CapturesRefundRequest($captureId);
+        $request->body = self::buildRequestBody();
         $client = SampleSkeleton::client();
         $response = $client->execute($request);
+
         if ($debug)
         {
             print "Status Code: {$response->statusCode}\n";
@@ -28,12 +33,11 @@ class CaptureOrder
             // To print the whole response body uncomment below line
             // echo json_encode($response->result, JSON_PRETTY_PRINT);
         }
-
         return $response;
     }
 }
 
 if (!count(debug_backtrace()))
 {
-    CaptureOrder::captureOrder('71551735D5901444A', true);
+    RefundOrder::refundOrder('4K037715F5936332E', true);
 }

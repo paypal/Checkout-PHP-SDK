@@ -141,7 +141,7 @@ class CreateOrder
                 print "\t{$link->rel}: {$link->href}\tCall Type: {$link->method}\n";
             }
 
-            print "Gross Amount: {$response->result->gross_amount->currency_code} {$response->result->gross_amount->value}\n";
+            print "Gross Amount: {$response->result->purchase_units[0]->amount->currency_code} {$response->result->purchase_units[0]->amount->value}\n";
 
             // To print the whole response body uncomment below line
             // echo json_encode($response->result, JSON_PRETTY_PRINT);

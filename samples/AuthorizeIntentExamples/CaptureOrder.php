@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gchockalingam
- * Date: 8/2/18
- * Time: 2:40 PM
- */
 
 namespace Sample\AuthorizeIntentExamples;
 
@@ -30,14 +24,14 @@ class CaptureOrder
         {
             print "Status Code: {$response->statusCode}\n";
             print "Status: {$response->result->status}\n";
-            print "Order ID: {$response->result->id}\n";
+            print "Capture ID: {$response->result->id}\n";
             print "Links:\n";
             foreach($response->result->links as $link)
             {
                 print "\t{$link->rel}: {$link->href}\tCall Type: {$link->method}\n";
             }
-            print "\nActual Response Body:\n";
-            echo json_encode($response->result, JSON_PRETTY_PRINT);
+            // To print the whole response body uncomment below line
+            // echo json_encode($response->result, JSON_PRETTY_PRINT);
         }
         return $response;
     }
@@ -45,5 +39,5 @@ class CaptureOrder
 
 if (!count(debug_backtrace()))
 {
-    CaptureOrder::captureOrder('97725816T0451871L', true);
+    CaptureOrder::captureOrder('18A38324BV5456924', true);
 }

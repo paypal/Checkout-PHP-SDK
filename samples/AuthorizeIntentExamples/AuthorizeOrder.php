@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gchockalingam
- * Date: 8/2/18
- * Time: 2:42 PM
- */
 
 namespace Sample\AuthorizeIntentExamples;
 
@@ -42,8 +36,8 @@ class AuthorizeOrder
             {
                 print "\t{$link->rel}: {$link->href}\tCall Type: {$link->method}\n";
             }
-            print "\nActual Response Body:\n";
-            echo json_encode($response->result, JSON_PRETTY_PRINT);
+            // To print the whole response body uncomment below line
+            // echo json_encode($response->result, JSON_PRETTY_PRINT);
         }
         return $response;
     }
@@ -51,5 +45,5 @@ class AuthorizeOrder
 
 if (!count(debug_backtrace()))
 {
-    AuthorizeOrder::authorizeOrder('14K47665XF157221P', true);
+    AuthorizeOrder::authorizeOrder('1U242387CB956380X', true);
 }
