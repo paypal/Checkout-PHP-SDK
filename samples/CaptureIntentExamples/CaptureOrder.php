@@ -4,16 +4,25 @@
 namespace Sample\CaptureIntentExamples;
 
 require __DIR__ . '/../../vendor/autoload.php';
+use Sample\PayPalClient;
 use CheckoutPhpsdk\Orders\OrdersCaptureRequest;
-use Sample\SampleSkeleton;
 
 class CaptureOrder
 {
+
+    /**
+     * This function can be used to capture an order payment by passing the approved
+     * order id as argument.
+     * 
+     * @param orderId
+     * @param debug
+     * @returns
+     */
     public static function captureOrder($orderId, $debug=false)
     {
         $request = new OrdersCaptureRequest($orderId);
 
-        $client = SampleSkeleton::client();
+        $client = PayPalClient::client();
         $response = $client->execute($request);
         if ($debug)
         {
@@ -25,6 +34,14 @@ class CaptureOrder
             {
                 print "\t{$link->rel}: {$link->href}\tCall Type: {$link->method}\n";
             }
+            print "Capture Ids:\n";
+            foreach($response->result->purchase_units as $purchase_unit)
+            {
+                foreach($purchase_unit->payments->captures as $capture)
+                {    
+                    print "\t{$capture->id}";
+                }
+            }
             // To print the whole response body uncomment below line
             // echo json_encode($response->result, JSON_PRETTY_PRINT);
         }
@@ -33,7 +50,11 @@ class CaptureOrder
     }
 }
 
+/**
+ * This is the driver function which invokes the captureOrder function with
+ * <b>Approved</b> Order Id to capture the order payment.
+ */
 if (!count(debug_backtrace()))
 {
-    CaptureOrder::captureOrder('71551735D5901444A', true);
+    CaptureOrder::captureOrder('0F105083N67049335', true);
 }

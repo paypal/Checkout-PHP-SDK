@@ -48,7 +48,7 @@ class PatchOrder
     public static function patchOrder($orderId)
     {
 
-        $client = SampleSkeleton::client();
+        $client = PayPalClient::client();
 
         $request = new OrdersPatchRequest($orderId);
         $request->body = PatchOrder::buildRequestBody();

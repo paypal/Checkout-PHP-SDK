@@ -31,7 +31,7 @@ use CheckoutPhpsdk\Core\SandboxEnvironment;
 $clientId = "AVNCVvV9oQ7qee5O8OW4LSngEeU1dI7lJAGCk91E_bjrXF2LXB2TK2ICXQuGtpcYSqs4mz1BMNQWuso1";
 $clientSecret = "EDQzd81k-1z2thZw6typSPOTEjxC_QbJh6IithFQuXdRFc7BjVht5rQapPiTaFt5RC-HCa1ir6mi-H5l";
 
-$environment = new SandBoxEnvironment($clientUd, $clientSecret);
+$environment = new SandBoxEnvironment($clientId, $clientSecret);
 $client = new PayPalHttpClient($environment);
 ```
 
@@ -107,7 +107,7 @@ Status: CREATED
 // $response->result->id gives the orderId of the order created above
 $request = new OrdersCaptureRequest($response->result->id);
 $request->prefer('return=representation');
-$request.requestBody({});
+$request->body ={};
 
 try {
     // Call API with your client and get a response for your call

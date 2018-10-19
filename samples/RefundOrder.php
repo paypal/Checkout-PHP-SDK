@@ -1,23 +1,36 @@
 <?php
 
-namespace Sample\AuthorizeIntentExamples;
+namespace Sample;
 
-require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
+use Sample\PayPalClient;
 use CheckoutPhpsdk\Payments\CapturesRefundRequest;
-use Sample\SampleSkeleton;
 
 class RefundOrder
 {
+
+    /**
+     * Function to create an refund capture request. Payload can be updated to issue partial refund.
+     */
     public static function buildRequestBody()
     {
-        return "{}";
+        return array(
+            'amount' =>
+                array(
+                    'value' => '20.00',
+                    'currency_code' => 'USD'
+                )
+        );
     }
 
+    /**
+     * This function can be used to preform refund on the capture. 
+     */
     public static function refundOrder($captureId, $debug=false)
     {
         $request = new CapturesRefundRequest($captureId);
         $request->body = self::buildRequestBody();
-        $client = SampleSkeleton::client();
+        $client = PayPalClient::client();
         $response = $client->execute($request);
 
         if ($debug)
@@ -37,7 +50,11 @@ class RefundOrder
     }
 }
 
+/**
+ * This is the driver function which invokes the refund capture function with
+ * Capture Id to preform refund on capture.
+ */
 if (!count(debug_backtrace()))
 {
-    RefundOrder::refundOrder('4K037715F5936332E', true);
+    RefundOrder::refundOrder('8XL09935J2224701N', true);
 }

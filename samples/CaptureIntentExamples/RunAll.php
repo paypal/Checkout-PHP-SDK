@@ -4,6 +4,7 @@ require __DIR__ . '/../../vendor/autoload.php';
 
 use Sample\CaptureIntentExamples\CreateOrder;
 use Sample\CaptureIntentExamples\CaptureOrder;
+use Sample\RefundOrder;
 
 $order = CreateOrder::createOrder();
 
@@ -37,6 +38,31 @@ if ($response->statusCode == 201)
     print "Status Code: {$response->statusCode}\n";
     print "Status: {$response->result->status}\n";
     print "Order ID: {$response->result->id}\n";
+    print "Links:\n";
+    for ($i = 0; $i < count($response->result->links); ++$i){
+        $link = $response->result->links[$i];
+        print "\t{$link->rel}: {$link->href}\tCall Type: {$link->method}\n";
+    }
+    foreach($response->result->purchase_units as $purchase_unit)
+    {
+        foreach($purchase_unit->payments->captures as $capture)
+        {    
+            $captureId = $capture->id;
+        }
+    }
+}
+else {
+    exit(1);
+}
+
+print "\nRefunding Order...\n";
+$response = RefundOrder::refundOrder($captureId);
+if ($response->statusCode == 201)
+{
+    print "Refunded Successfully\n";
+    print "Status Code: {$response->statusCode}\n";
+    print "Status: {$response->result->status}\n";
+    print "Refund ID: {$response->result->id}\n";
     print "Links:\n";
     for ($i = 0; $i < count($response->result->links); ++$i){
         $link = $response->result->links[$i];

@@ -3,7 +3,7 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use CheckoutPhpsdk\Orders\OrdersCreateRequest;
-use Sample\SampleSkeleton;
+use Sample\PayPalClient;
 use BraintreeHttp\HttpException;
 
 class ErrorSample
@@ -41,7 +41,7 @@ class ErrorSample
 
         print "Response:\n";
         try{
-            $client = SampleSkeleton::client();
+            $client = PayPalClient::client();
             $response = $client->execute($request);
         }
         catch(HttpException $exception){
@@ -74,7 +74,7 @@ class ErrorSample
         print "Request Body:\n" . json_encode($request->body, JSON_PRETTY_PRINT) . "\n\n";
 
         try{
-            $client = SampleSkeleton::client();
+            $client = PayPalClient::client();
             $response = $client->execute($request);
         }
         catch(HttpException $exception){

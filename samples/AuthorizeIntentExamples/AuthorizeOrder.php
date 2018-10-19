@@ -4,21 +4,30 @@ namespace Sample\AuthorizeIntentExamples;
 
 require __DIR__ . '/../../vendor/autoload.php';
 use CheckoutPhpsdk\Orders\OrdersAuthorizeRequest;
-use Sample\SampleSkeleton;
+use Sample\PayPalClient;
 
 
 class AuthorizeOrder
 {
+    /**
+     * Setting up request body for Authorize. This can be populated with fields as per need. Refer API docs for more details.
+     * 
+     */
     public static function buildRequestBody()
     {
         return "{}";
     }
+
+    /**
+     * This function can be used to perform authorization on the approved order.
+     * Valid Approved order id should be passed as an argument.
+     */
     public static function authorizeOrder($orderId, $debug=false)
     {
         $request = new OrdersAuthorizeRequest($orderId);
         $request->body = self::buildRequestBody();
 
-        $client = SampleSkeleton::client();
+        $client = PayPalClient::client();
         $response = $client->execute($request);
         if ($debug)
         {
@@ -43,6 +52,9 @@ class AuthorizeOrder
     }
 }
 
+/**
+ * This is an driver function which invokes authorize order.
+ */
 if (!count(debug_backtrace()))
 {
     AuthorizeOrder::authorizeOrder('1U242387CB956380X', true);

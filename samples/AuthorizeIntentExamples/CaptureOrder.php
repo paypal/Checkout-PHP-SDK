@@ -4,20 +4,29 @@ namespace Sample\AuthorizeIntentExamples;
 
 require __DIR__ . '/../../vendor/autoload.php';
 use CheckoutPhpsdk\Payments\AuthorizationsCaptureRequest;
-use Sample\SampleSkeleton;
+use Sample\PayPalClient;
 
 class CaptureOrder
 {
+    /**
+     * Below method can be used to build the capture request body.
+     * This request can be updated with required fields as per need.
+     * Please refer API specs for more info.
+     */
     public static function buildRequestBody()
     {
         return "{}";
     }
 
+    /**
+     * Below function can be used to capture order.
+     * Valid Authorization id should be passed as an argument.
+     */
     public static function captureOrder($authorizationId, $debug=false)
     {
         $request = new AuthorizationsCaptureRequest($authorizationId);
         $request->body = self::buildRequestBody();
-        $client = SampleSkeleton::client();
+        $client = PayPalClient::client();
         $response = $client->execute($request);
 
         if ($debug)
@@ -37,6 +46,9 @@ class CaptureOrder
     }
 }
 
+/**
+ * Driver function for invoking the capture flow.
+ */
 if (!count(debug_backtrace()))
 {
     CaptureOrder::captureOrder('18A38324BV5456924', true);

@@ -4,18 +4,25 @@ namespace Sample;
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use Sample\PayPalClient;
 use CheckoutPhpsdk\Orders\OrdersGetRequest;
-use Sample\AuthorizeIntentExamples\CreateOrder;
+use Sample\CaptureIntentExamples\CreateOrder;
 
 class GetOrder
 {
-    public static function getOrder()
+
+    /**
+     * This function can be used to retrieve an order by passing order Id as argument.
+     */
+    public static function getOrder($orderId)
     {
-        $createdOrder = CreateOrder::createOrder()->result;
-        $client = SampleSkeleton::client();
-
-        $response = $client->execute(new OrdersGetRequest($createdOrder->id));
-
+        
+        $client = PayPalClient::client();
+        $response = $client->execute(new OrdersGetRequest($orderId));
+        /**
+         * Enable below line to print complete response as JSON.
+         */
+        //print json_encode($response->result);
         print "Status Code: {$response->statusCode}\n";
         print "Status: {$response->result->status}\n";
         print "Order ID: {$response->result->id}\n";
@@ -26,14 +33,22 @@ class GetOrder
             print "\t{$link->rel}: {$link->href}\tCall Type: {$link->method}\n";
         }
 
-        print "Gross Amount: {$response->result->gross_amount->currency_code} {$response->result->gross_amount->value}\n";
+        print "Gross Amount: {$response->result->purchase_units[0]->amount->currency_code} {$response->result->purchase_units[0]->amount->value}\n";
 
         // To print the whole response body uncomment below line
         // echo json_encode($response->result, JSON_PRETTY_PRINT);
     }
 }
 
+/**
+ * This is the driver function which invokes the getOrder function to retrieve
+ * an sample order.
+ * 
+ * To get the correct Order id, we are using the createOrder to create new order
+ * and then we are using the newly created order id.
+ */
 if (!count(debug_backtrace()))
 {
-    GetOrder::getOrder();
+    $createdOrder = CreateOrder::createOrder()->result;
+    GetOrder::getOrder($createdOrder ->id);
 }

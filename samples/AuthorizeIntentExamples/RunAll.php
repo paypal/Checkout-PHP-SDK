@@ -5,6 +5,7 @@ require __DIR__ . '/../../vendor/autoload.php';
 use Sample\AuthorizeIntentExamples\CreateOrder;
 use Sample\AuthorizeIntentExamples\AuthorizeOrder;
 use Sample\AuthorizeIntentExamples\CaptureOrder;
+use Sample\RefundOrder;
 
 $order = CreateOrder::createOrder();
 
@@ -50,7 +51,26 @@ if ($response->statusCode == 201)
     print "Captured Successfully\n";
     print "Status Code: {$response->statusCode}\n";
     print "Status: {$response->result->status}\n";
-    print "Order ID: {$response->result->id}\n";
+    $captureId = $response->result->id;
+    print "Capture ID: {$captureId}\n";
+    print "Links:\n";
+    for ($i = 0; $i < count($response->result->links); ++$i){
+        $link = $response->result->links[$i];
+        print "\t{$link->rel}: {$link->href}\tCall Type: {$link->method}\n";
+    }
+}
+else {
+    exit(1);
+}
+
+print "\nRefunding Order...\n";
+$response = RefundOrder::refundOrder($captureId);
+if ($response->statusCode == 201)
+{
+    print "Refunded Successfully\n";
+    print "Status Code: {$response->statusCode}\n";
+    print "Status: {$response->result->status}\n";
+    print "Refund ID: {$response->result->id}\n";
     print "Links:\n";
     for ($i = 0; $i < count($response->result->links); ++$i){
         $link = $response->result->links[$i];

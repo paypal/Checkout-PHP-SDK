@@ -4,11 +4,18 @@ namespace Sample\CaptureIntentExamples;
 
 require __DIR__ . '/../../vendor/autoload.php';
 
+
+use Sample\PayPalClient;
 use CheckoutPhpsdk\Orders\OrdersCreateRequest;
-use Sample\SampleSkeleton;
 
 class CreateOrder
 {
+    
+    /**
+     * Setting up the JSON request body for creating the Order. The Intent in the
+     * request body should be set as "CAPTURE" for capture intent flow.
+     * 
+     */
     private static function buildRequestBody()
     {
         return array(
@@ -106,6 +113,10 @@ class CreateOrder
                             'shipping' =>
                                 array(
                                     'method' => 'United States Postal Service',
+                                    'name' =>
+                                        array(
+                                            'full_name' => 'John Doe',
+                                        ),
                                     'address' =>
                                         array(
                                             'address_line_1' => '123 Townsend St',
@@ -121,13 +132,17 @@ class CreateOrder
         );
     }
 
+    /**
+     * This is the sample function which can be sued to create an order. It uses the
+     * JSON body returned by buildRequestBody() to create an new Order.
+     */
     public static function createOrder($debug=false)
     {
         $request = new OrdersCreateRequest();
-        $request->prefer('return=representation');
+        $request->headers["prefer"] = "return=representation";
         $request->body = self::buildRequestBody();
 
-        $client = SampleSkeleton::client();
+        $client = PayPalClient::client();
         $response = $client->execute($request);
         if ($debug)
         {
@@ -151,7 +166,10 @@ class CreateOrder
 }
 
 
-
+/**
+ * This is the driver function which invokes the createOrder function to create
+ * an sample order.
+ */
 if (!count(debug_backtrace()))
 {
     CreateOrder::createOrder(true);
