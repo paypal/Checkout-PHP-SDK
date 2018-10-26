@@ -43,8 +43,8 @@ class RefundOrder
             {
                 print "\t{$link->rel}: {$link->href}\tCall Type: {$link->method}\n";
             }
-            // To print the whole response body uncomment below line
-            // echo json_encode($response->result, JSON_PRETTY_PRINT);
+            // To toggle printing the whole response body comment/uncomment below line
+            echo json_encode($response->result, JSON_PRETTY_PRINT), "\n";
         }
         return $response;
     }

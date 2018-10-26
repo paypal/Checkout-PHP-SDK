@@ -139,6 +139,11 @@ class CreateOrder
     {
         return array(
             'intent' => 'AUTHORIZE',
+            'application_context' =>
+                array(
+                    'return_url' => 'https://example.com/return',
+                    'cancel_url' => 'https://example.com/cancel'
+                ),
             'purchase_units' =>
                 array(
                     0 =>
@@ -179,8 +184,8 @@ class CreateOrder
 
             print "Gross Amount: {$response->result->purchase_units[0]->amount->currency_code} {$response->result->purchase_units[0]->amount->value}\n";
 
-            // To print the whole response body uncomment below line
-            // echo json_encode($response->result, JSON_PRETTY_PRINT);
+            // To toggle printing the whole response body comment/uncomment below line
+             echo json_encode($response->result, JSON_PRETTY_PRINT), "\n";
         }
 
 
@@ -214,8 +219,8 @@ class CreateOrder
 
             print "Gross Amount: {$response->result->purchase_units[0]->amount->currency_code} {$response->result->purchase_units[0]->amount->value}\n";
 
-            // To print the whole response body uncomment below line
-            // echo json_encode($response->result, JSON_PRETTY_PRINT);
+            // To toggle printing the whole response body comment/uncomment below line
+            echo json_encode($response->result, JSON_PRETTY_PRINT), "\n";
         }
 
 
