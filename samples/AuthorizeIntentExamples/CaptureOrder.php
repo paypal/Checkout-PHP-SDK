@@ -3,7 +3,7 @@
 namespace Sample\AuthorizeIntentExamples;
 
 require __DIR__ . '/../../vendor/autoload.php';
-use CheckoutPhpsdk\Payments\AuthorizationsCaptureRequest;
+use PayPalCheckoutSdk\Payments\AuthorizationsCaptureRequest;
 use Sample\PayPalClient;
 
 class CaptureOrder

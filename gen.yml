@@ -1,6 +1,6 @@
 ---
-projectName: CheckoutPHPSDK
+projectName: PayPalCheckoutSdk
 language: php
-sourcePath: lib/CheckoutPhpsdk
+sourcePath: lib/PayPalCheckoutSdk
 testPath: tests
 apiVersioning: false

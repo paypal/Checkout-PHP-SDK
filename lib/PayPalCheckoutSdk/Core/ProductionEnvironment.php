@@ -1,8 +1,8 @@
 <?php
 
-namespace CheckoutPhpsdk\Core;
+namespace PayPalCheckoutSdk\Core;
 
-class SandboxEnvironment extends PayPalEnvironment
+class ProductionEnvironment extends PayPalEnvironment
 {
     public function __construct($clientId, $clientSecret)
     {
@@ -11,6 +11,6 @@ class SandboxEnvironment extends PayPalEnvironment
 
     public function baseUrl()
     {
-        return "https://api.sandbox.paypal.com";
+        return "https://api.paypal.com";
     }
 }

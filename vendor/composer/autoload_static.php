@@ -30,14 +30,14 @@ class ComposerStaticInit586ec2c98a42e4698aef77c9948841eb
             'Symfony\\Component\\Yaml\\' => 23,
             'Sample\\' => 7,
         ),
+        'P' => 
+        array (
+            'PayPalCheckoutSdk\\' => 18,
+        ),
         'D' => 
         array (
             'Doctrine\\Instantiator\\' => 22,
             'DeepCopy\\' => 9,
-        ),
-        'C' => 
-        array (
-            'CheckoutPhpsdk\\' => 15,
         ),
         'B' => 
         array (
@@ -72,6 +72,10 @@ class ComposerStaticInit586ec2c98a42e4698aef77c9948841eb
         array (
             0 => __DIR__ . '/../..' . '/samples',
         ),
+        'PayPalCheckoutSdk\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/lib/PayPalCheckoutSdk',
+        ),
         'Doctrine\\Instantiator\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
@@ -79,10 +83,6 @@ class ComposerStaticInit586ec2c98a42e4698aef77c9948841eb
         'DeepCopy\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
-        ),
-        'CheckoutPhpsdk\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/lib/CheckoutPhpsdk',
         ),
         'BraintreeHttp\\' => 
         array (

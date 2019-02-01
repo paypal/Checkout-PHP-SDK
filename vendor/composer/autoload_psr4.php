@@ -12,8 +12,8 @@ return array(
     'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
     'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
     'Sample\\' => array($baseDir . '/samples'),
+    'PayPalCheckoutSdk\\' => array($baseDir . '/lib/PayPalCheckoutSdk'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
-    'CheckoutPhpsdk\\' => array($baseDir . '/lib/CheckoutPhpsdk'),
     'BraintreeHttp\\' => array($vendorDir . '/braintree/braintreehttp/lib/BraintreeHttp'),
 );

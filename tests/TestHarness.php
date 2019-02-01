@@ -2,8 +2,8 @@
 
 namespace Test;
 
-use CheckoutPhpsdk\Core\PayPalHttpClient;
-use CheckoutPhpsdk\Core\SandboxEnvironment;
+use PayPalCheckoutSdk\Core\PayPalHttpClient;
+use PayPalCheckoutSdk\Core\SandboxEnvironment;
 
 ini_set('error_reporting', E_ALL); // or error_reporting(E_ALL);
 ini_set('display_errors', '1');

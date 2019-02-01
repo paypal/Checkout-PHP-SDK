@@ -6,7 +6,7 @@ require __DIR__ . '/../../vendor/autoload.php';
 
 
 use Sample\PayPalClient;
-use CheckoutPhpsdk\Orders\OrdersCreateRequest;
+use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
 
 class CreateOrder
 {
