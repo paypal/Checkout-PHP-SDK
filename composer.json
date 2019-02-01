@@ -1,5 +1,5 @@
 {
-    "name": "paypal/checkout-sdk",
+    "name": "rajarampadmanathan/test-push",
     "description": "PayPal's PHP SDK for Checkout REST APIs",
     "keywords": ["paypal", "payments", "rest", "sdk", "orders", "checkout"],
     "type": "library",
@@ -19,8 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "PayPalCheckoutSdk\\": "lib/PayPalCheckoutSdk",
-            "Sample\\": "samples"
+            "PayPalCheckoutSdk\\": "lib/PayPalCheckoutSdk"
         }
     },
     "autoload-dev": {
