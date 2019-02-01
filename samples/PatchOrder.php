@@ -4,8 +4,8 @@ namespace Sample;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use CheckoutPhpsdk\Orders\OrdersPatchRequest;
-use CheckoutPhpsdk\Orders\OrdersGetRequest;
+use PayPalCheckoutSdk\Orders\OrdersPatchRequest;
+use PayPalCheckoutSdk\Orders\OrdersGetRequest;
 use Sample\AuthorizeIntentExamples\CreateOrder;
 
 class PatchOrder

@@ -25,11 +25,11 @@ An environment which supports TLS 1.2 (see the TLS-update site for more informat
 Get client ID and client secret by going to https://developer.paypal.com/developer/applications and generating a REST API app. Get <b>Client ID</b> and <b>Secret</b> from there.
 
 ```php
-use CheckoutPhpsdk\Core\PayPalHttpClient;
-use CheckoutPhpsdk\Core\SandboxEnvironment;
+use PayPalCheckoutSdk\Core\PayPalHttpClient;
+use PayPalCheckoutSdk\Core\SandboxEnvironment;
 // Creating an environment
-$clientId = "AVNCVvV9oQ7qee5O8OW4LSngEeU1dI7lJAGCk91E_bjrXF2LXB2TK2ICXQuGtpcYSqs4mz1BMNQWuso1";
-$clientSecret = "EDQzd81k-1z2thZw6typSPOTEjxC_QbJh6IithFQuXdRFc7BjVht5rQapPiTaFt5RC-HCa1ir6mi-H5l";
+$clientId = "<<PAYPAL-CLIENT-ID>>";
+$clientSecret = "<<PAYPAL-CLIENT-SECRET>>";
 
 $environment = new SandBoxEnvironment($clientId, $clientSecret);
 $client = new PayPalHttpClient($environment);

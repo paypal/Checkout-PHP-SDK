@@ -1,6 +1,6 @@
 <?php
 
-namespace CheckoutPhpsdk\Core;
+namespace PayPalCheckoutSdk\Core;
 
 use BraintreeHttp\HttpRequest;
 use BraintreeHttp\Injector;
