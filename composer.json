@@ -19,7 +19,8 @@
     },
     "autoload": {
         "psr-4": {
-            "PayPalCheckoutSdk\\": "lib/PayPalCheckoutSdk"
+            "PayPalCheckoutSdk\\": "lib/PayPalCheckoutSdk",
+            "Sample\\":"samples/"
         }
     },
     "autoload-dev": {
