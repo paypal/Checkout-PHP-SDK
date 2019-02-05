@@ -7,11 +7,6 @@ __Welcome to PayPal PHP SDK__. This repository contains PayPal's PHP SDK and sam
 
 This is a part of the next major PayPal SDK. It includes a simplified interface to only provide simple model objects and blueprints for HTTP calls. This repo currently contains functionality for PayPal Checkout APIs which includes Orders V2 and Payments V2.
 
-## Please Note
-> **The Payment Card Industry (PCI) Council has [mandated](http://blog.pcisecuritystandards.org/migrating-from-ssl-and-early-tls) that early versions of TLS be retired from service.  All organizations that handle credit card information are required to comply with this standard. As part of this obligation, PayPal is updating its services to require TLS 1.2 for all HTTPS connections. At this time, PayPal will also require HTTP/1.1 for all connections. [Click here](https://github.com/paypal/tls-update) for more information. Connections to the sandbox environment use only TLS 1.2.**
-
-## Direct Credit Card Support
-> **Important: The PayPal REST API no longer supports new direct credit card integrations.**  Please instead consider [Braintree Direct](https://www.braintreepayments.com/products/braintree-direct); which is, PayPal's preferred integration solution for accepting direct credit card payments in your mobile app or website. Braintree, a PayPal service, is the easiest way to accept credit cards, PayPal, and many other payment methods.
 
 ## Prerequisites
 
@@ -21,10 +16,17 @@ An environment which supports TLS 1.2 (see the TLS-update site for more informat
 
 ## Usage
 
+### Binaries
+
+It is not mandatory to fork this repository for using the PayPal SDK. You can refer [PayPal Checkout Server SDK](https://developer.paypal.com/docs/checkout/reference/server-integration) for configuring and working with SDK without forking this code.
+
+For contirbuting or referrring the samples, You can fork/refer this repository. 
+
 ### Setting up credentials
 Get client ID and client secret by going to https://developer.paypal.com/developer/applications and generating a REST API app. Get <b>Client ID</b> and <b>Secret</b> from there.
 
 ```php
+require __DIR__ . '/vendor/autoload.php';
 use PayPalCheckoutSdk\Core\PayPalHttpClient;
 use PayPalCheckoutSdk\Core\SandboxEnvironment;
 // Creating an environment
@@ -41,6 +43,7 @@ $client = new PayPalHttpClient($environment);
 ```php
 // Construct a request object and set desired parameters
 // Here, OrdersCreateRequest() creates a POST request to /v2/checkout/orders
+use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
 $request = new OrdersCreateRequest();
 $request->prefer('return=representation');
 $request->body = [
@@ -100,15 +103,14 @@ Status: CREATED
 ```
 
 ## Capturing an Order
-
+Before capture, Order should be approved by the buyer using the approval URL returned in the create order response.
 ### Code to Execute:
 ```php
+use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
 // Here, OrdersCaptureRequest() creates a POST request to /v2/checkout/orders
 // $response->result->id gives the orderId of the order created above
-$request = new OrdersCaptureRequest($response->result->id);
+$request = new OrdersCaptureRequest("APPROVED-ORDER-ID");
 $request->prefer('return=representation');
-$request->body ={};
-
 try {
     // Call API with your client and get a response for your call
     $response = $client->execute($request);
@@ -151,10 +153,8 @@ Status: COMPLETED
 To run integration tests using your client id and secret, clone this repository and run the following command:
 ```sh
 $ composer install
-$ composer integration
+$ CLIENT_ID=YOUR_SANDBOX_CLIENT_ID CLIENT_SECRET=OUR_SANDBOX_CLIENT_SECRET composer integration
 ```
-
-*NOTE*: This SDK is still in beta, is subject to change, and should not be used in production.
 
 ## Samples
 
@@ -162,4 +162,4 @@ You can start off by trying out [creating and capturing an order](/samples/Captu
 
 To try out different samples for both create and authorize intent check [this link](/samples)
 
-
+Note: Update the `PayPalClient.php` with your sandbox client credentials or pass your client credentials as environment variable whie executing the samples.
