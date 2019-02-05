@@ -20,6 +20,7 @@ An environment which supports TLS 1.2 (see the TLS-update site for more informat
 Get client ID and client secret by going to https://developer.paypal.com/developer/applications and generating a REST API app. Get <b>Client ID</b> and <b>Secret</b> from there.
 
 ```php
+require __DIR__ . '/vendor/autoload.php';
 use PayPalCheckoutSdk\Core\PayPalHttpClient;
 use PayPalCheckoutSdk\Core\SandboxEnvironment;
 // Creating an environment
@@ -36,6 +37,7 @@ $client = new PayPalHttpClient($environment);
 ```php
 // Construct a request object and set desired parameters
 // Here, OrdersCreateRequest() creates a POST request to /v2/checkout/orders
+use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
 $request = new OrdersCreateRequest();
 $request->prefer('return=representation');
 $request->body = [
@@ -95,15 +97,14 @@ Status: CREATED
 ```
 
 ## Capturing an Order
-
+Before capture, Order should be approved by the buyer using the approval URL returned in the create order response.
 ### Code to Execute:
 ```php
+use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
 // Here, OrdersCaptureRequest() creates a POST request to /v2/checkout/orders
 // $response->result->id gives the orderId of the order created above
-$request = new OrdersCaptureRequest($response->result->id);
+$request = new OrdersCaptureRequest("APPROVED-ORDER-ID");
 $request->prefer('return=representation');
-$request->body ={};
-
 try {
     // Call API with your client and get a response for your call
     $response = $client->execute($request);
