@@ -2,11 +2,12 @@
 
 ![Home Image](homepage.jpg)
 
-__Welcome to PayPal PHP SDK__. This repository contains PayPal's PHP SDK and samples for REST API.
+__Welcome to PayPal PHP SDK__. This repository contains PayPal's PHP SDK and samples for [v2/checkout/orders](https://developer.paypal.com/docs/api/orders/v2/) and [v2/payments](https://developer.paypal.com/docs/api/payments/v2/) APIs.
 
 
 This is a part of the next major PayPal SDK. It includes a simplified interface to only provide simple model objects and blueprints for HTTP calls. This repo currently contains functionality for PayPal Checkout APIs which includes Orders V2 and Payments V2.
 
+Please refer to the [PayPal Checkout Integration Guide](https://developer.paypal.com/docs/checkout/) for more information. Also refer to [Setup your SDK](https://developer.paypal.com/docs/checkout/reference/server-integration/setup-sdk/) for additional information about setting up the SDK's. 
 
 ## Prerequisites
 
