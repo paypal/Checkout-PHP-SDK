@@ -24,7 +24,7 @@ class PayPalClient
     /**
      * Setting up and Returns PayPal SDK environment with PayPal Access credentials.
      * For demo purpose, we are using SandboxEnvironment. In production this will be
-     * LiveEnvironment.
+     * ProductionEnvironment.
      */
     public static function environment()
     {
