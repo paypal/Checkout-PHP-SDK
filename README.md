@@ -55,7 +55,7 @@ $request->body = [
                              "currency_code" => "USD"
                          ]
                      ]],
-                     "redirect_urls" => [
+                     "application_context" => [
                           "cancel_url" => "https://example.com/cancel",
                           "return_url" => "https://example.com/return"
                      ] 
