@@ -2,11 +2,11 @@
 
 ![Home Image](homepage.jpg)
 
-__Welcome to PayPal PHP SDK__. This repository contains PayPal's PHP SDK and samples for REST API.
+__Welcome to PayPal PHP SDK__. This repository contains PayPal's PHP SDK and samples for [v2/checkout/orders](https://developer.paypal.com/docs/api/orders/v2/) and [v2/payments](https://developer.paypal.com/docs/api/payments/v2/) APIs.
 
+This is a part of the next major PayPal SDK. It includes a simplified interface to only provide simple model objects and blueprints for HTTP calls. This repo currently contains functionality for PayPal Checkout APIs which includes [Orders V2](https://developer.paypal.com/docs/api/orders/v2/) and [Payments V2](https://developer.paypal.com/docs/api/payments/v2/).
 
-This is a part of the next major PayPal SDK. It includes a simplified interface to only provide simple model objects and blueprints for HTTP calls. This repo currently contains functionality for PayPal Checkout APIs which includes Orders V2 and Payments V2.
-
+Please refer to the [PayPal Checkout Integration Guide](https://developer.paypal.com/docs/checkout/) for more information. Also refer to [Setup your SDK](https://developer.paypal.com/docs/checkout/reference/server-integration/setup-sdk/) for additional information about setting up the SDK's. 
 
 ## Prerequisites
 
@@ -55,7 +55,7 @@ $request->body = [
                              "currency_code" => "USD"
                          ]
                      ]],
-                     "redirect_urls" => [
+                     "application_context" => [
                           "cancel_url" => "https://example.com/cancel",
                           "return_url" => "https://example.com/return"
                      ] 
@@ -163,3 +163,7 @@ You can start off by trying out [creating and capturing an order](/samples/Captu
 To try out different samples for both create and authorize intent check [this link](/samples)
 
 Note: Update the `PayPalClient.php` with your sandbox client credentials or pass your client credentials as environment variable whie executing the samples.
+
+
+## License
+Code released under [SDK LICENSE](LICENSE)  
