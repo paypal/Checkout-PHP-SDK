@@ -52,7 +52,7 @@ class RefundOrder
 
 /**
  * This is the driver function which invokes the refund capture function with
- * Capture Id to preform refund on capture.
+ * Capture Id to perform refund on capture.
  */
 if (!count(debug_backtrace()))
 {
