@@ -33,7 +33,7 @@ use PayPalCheckoutSdk\Core\SandboxEnvironment;
 $clientId = "<<PAYPAL-CLIENT-ID>>";
 $clientSecret = "<<PAYPAL-CLIENT-SECRET>>";
 
-$environment = new SandBoxEnvironment($clientId, $clientSecret);
+$environment = new SandboxEnvironment($clientId, $clientSecret);
 $client = new PayPalHttpClient($environment);
 ```
 
