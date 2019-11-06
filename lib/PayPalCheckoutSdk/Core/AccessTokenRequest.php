@@ -20,6 +20,10 @@ class AccessTokenRequest extends HttpRequest
             $body["refresh_token"] = $refreshToken;
         }
 
+		if ($environment->getTargetSubject() != null) {
+			$body["target_subject"] = $environment->getTargetSubject();
+		}
+
         $this->body = $body;
         $this->headers["Content-Type"] = "application/x-www-form-urlencoded";
     }
