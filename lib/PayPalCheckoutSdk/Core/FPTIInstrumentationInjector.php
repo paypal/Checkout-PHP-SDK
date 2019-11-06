@@ -2,7 +2,7 @@
 
 namespace PayPalCheckoutSdk\Core;
 
-use BraintreeHttp\Injector;
+use PayPalHttp\Injector;
 
 class FPTIInstrumentationInjector implements Injector
 {

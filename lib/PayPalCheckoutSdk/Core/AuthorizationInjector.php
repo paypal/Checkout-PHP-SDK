@@ -2,9 +2,9 @@
 
 namespace PayPalCheckoutSdk\Core;
 
-use BraintreeHttp\HttpRequest;
-use BraintreeHttp\Injector;
-use BraintreeHttp\HttpClient;
+use PayPalHttp\HttpRequest;
+use PayPalHttp\Injector;
+use PayPalHttp\HttpClient;
 
 class AuthorizationInjector implements Injector
 {
