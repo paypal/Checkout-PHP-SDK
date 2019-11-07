@@ -3,10 +3,10 @@
     "description": "PayPal's PHP SDK for Checkout REST APIs",
     "keywords": ["paypal", "payments", "rest", "sdk", "orders", "checkout"],
     "type": "library",
-    "license": "MIT",
+    "license": "https://github.com/paypal/Checkout-PHP-SDK/blob/master/LICENSE",
     "homepage": "http://github.com/paypal/Checkout-PHP-SDK/",
     "require": {
-        "braintree/braintreehttp": "0.3.0"
+        "paypal/paypalhttp": "1.0.0"
     },
     "authors": [
         {

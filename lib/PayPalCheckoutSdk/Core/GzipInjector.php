@@ -3,7 +3,7 @@
 namespace PayPalCheckoutSdk\Core;
 
 
-use BraintreeHttp\Injector;
+use PayPalHttp\Injector;
 
 class GzipInjector implements Injector
 {

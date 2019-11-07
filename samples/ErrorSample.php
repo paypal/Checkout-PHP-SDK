@@ -4,7 +4,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
 use Sample\PayPalClient;
-use BraintreeHttp\HttpException;
+use PayPalHttp\HttpException;
 
 class ErrorSample
 {

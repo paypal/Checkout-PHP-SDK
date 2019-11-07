@@ -31,7 +31,7 @@ class UserAgent
             $curlVersion = curl_version();
             $featureList[] = 'curl=' . $curlVersion['version'];
         }
-        return sprintf("PayPalSDK/%s %s (%s)", "PayPal-PHP-SDK", Version::VERSION, implode('; ', $featureList));
+        return sprintf("PayPalSDK/%s %s (%s)", "Checkout-PHP-SDK", Version::VERSION, implode('; ', $featureList));
     }
     /**
      * Gets PHP Bit version

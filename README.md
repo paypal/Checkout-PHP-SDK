@@ -33,7 +33,7 @@ use PayPalCheckoutSdk\Core\SandboxEnvironment;
 $clientId = "<<PAYPAL-CLIENT-ID>>";
 $clientSecret = "<<PAYPAL-CLIENT-SECRET>>";
 
-$environment = new SandBoxEnvironment($clientId, $clientSecret);
+$environment = new SandboxEnvironment($clientId, $clientSecret);
 $client = new PayPalHttpClient($environment);
 ```
 
@@ -55,7 +55,7 @@ $request->body = [
                              "currency_code" => "USD"
                          ]
                      ]],
-                     "redirect_urls" => [
+                     "application_context" => [
                           "cancel_url" => "https://example.com/cancel",
                           "return_url" => "https://example.com/return"
                      ] 
@@ -163,3 +163,7 @@ You can start off by trying out [creating and capturing an order](/samples/Captu
 To try out different samples for both create and authorize intent check [this link](/samples)
 
 Note: Update the `PayPalClient.php` with your sandbox client credentials or pass your client credentials as environment variable whie executing the samples.
+
+
+## License
+Code released under [SDK LICENSE](LICENSE)  

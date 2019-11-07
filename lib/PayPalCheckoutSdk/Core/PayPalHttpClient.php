@@ -2,7 +2,7 @@
 
 namespace PayPalCheckoutSdk\Core;
 
-use BraintreeHttp\HttpClient;
+use PayPalHttp\HttpClient;
 
 class PayPalHttpClient extends HttpClient
 {

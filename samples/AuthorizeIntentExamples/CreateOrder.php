@@ -25,7 +25,7 @@ class CreateOrder
                     'brand_name' => 'EXAMPLE INC',
                     'locale' => 'en-US',
                     'landing_page' => 'BILLING',
-                    'shipping_preferences' => 'SET_PROVIDED_ADDRESS',
+                    'shipping_preference' => 'SET_PROVIDED_ADDRESS',
                     'user_action' => 'PAY_NOW',
                 ),
             'purchase_units' =>

@@ -9,7 +9,7 @@
 
 namespace PayPalCheckoutSdk\Orders;
 
-use BraintreeHttp\HttpRequest;
+use PayPalHttp\HttpRequest;
 
 class OrdersCreateRequest extends HttpRequest
 {
