@@ -1,46 +1,20 @@
 <?php
 
+namespace Test\Integration\Orders;
 
+use Test\IntegrationTestCase;
+use Test\Kit\OrdersCreateRequestTrait;
 
-namespace Test\Orders;
-
-use PHPUnit\Framework\TestCase;
-
-use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
-use Test\TestHarness;
-
-
-class OrdersCreateTest extends TestCase
+class OrdersCreateTest extends IntegrationTestCase
 {
-    private static function buildRequestBody()
-    {
-        return [
-            "intent" => "CAPTURE",
-            "purchase_units" => [[
-                "reference_id" => "test_ref_id1",
-                "amount" => [
-                    "value" => "100.00",
-                    "currency_code" => "USD"
-                ]
-            ]],
-            "redirect_urls" => [
-                "cancel_url" => "https://example.com/cancel",
-                "return_url" => "https://example.com/return"
-            ]
-        ];
-    }
+    use OrdersCreateRequestTrait;
 
-    public static function create($client) {
-        $request = new OrdersCreateRequest();
-        $request->prefer("return=representation");
-        $request->body = self::buildRequestBody();
-        return $client->execute($request);
-    }
-
+    /**
+     * testOrdersCreateRequest
+     */
     public function testOrdersCreateRequest()
     {
-        $client = TestHarness::client();
-        $response = self::create($client);
+        $response = $this->createOrdersCreateRequest($this->client);
         $this->assertEquals(201, $response->statusCode);
         $this->assertNotNull($response->result);
 

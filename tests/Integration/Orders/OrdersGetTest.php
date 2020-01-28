@@ -1,25 +1,23 @@
 <?php
 
-
-
-namespace Test\Orders;
-
-use PHPUnit\Framework\TestCase;
+namespace Test\Integration\Orders;
 
 use PayPalCheckoutSdk\Orders\OrdersGetRequest;
-use Test\TestHarness;
+use Test\IntegrationTestCase;
+use Test\Kit\OrdersCreateRequestTrait;
 
-
-class OrdersGetTest extends TestCase
+class OrdersGetTest extends IntegrationTestCase
 {
+    use OrdersCreateRequestTrait;
 
+    /**
+     * testOrdersGetRequest
+     */
     public function testOrdersGetRequest()
     {
-        $client = TestHarness::client();
-        $createdOrder = OrdersCreateTest::create($client);
-
+        $createdOrder = $this->createOrdersCreateRequest($this->client);
         $request = new OrdersGetRequest($createdOrder->result->id);
-        $response = $client->execute($request);
+        $response = $this->client->execute($request);
         $this->assertEquals(200, $response->statusCode);
         $this->assertNotNull($response->result);
 

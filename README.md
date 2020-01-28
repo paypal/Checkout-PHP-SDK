@@ -18,6 +18,19 @@ PHP 5.6 and above
 
 An environment which supports TLS 1.2 (see the TLS-update site for more information)
 
+## Install
+Add the SDK to your composer packages with
+
+```
+composer require paypal/paypal-checkout-sdk
+```
+
+After this only add 
+```php
+require __DIR__ . '/vendor/autoload.php';
+```
+if not already did for the other dependencies in your project.
+
 ## Usage
 
 ### Binaries
