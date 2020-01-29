@@ -5,11 +5,31 @@ namespace PayPalCheckoutSdk\Core;
 
 class AccessToken
 {
+    /**
+     * @var string
+     */
     public $token;
+
+    /**
+     * @var string
+     */
     public $tokenType;
+
+    /**
+     * @var int
+     */
     public $expiresIn;
+
+    /**
+     * @var int
+     */
     private $createDate;
 
+    /**
+     * @param string $token
+     * @param string $tokenType
+     * @param int $expiresIn
+     */
     public function __construct($token, $tokenType, $expiresIn)
     {
         $this->token = $token;
@@ -18,6 +38,9 @@ class AccessToken
         $this->createDate = time();
     }
 
+    /**
+     * @return bool
+     */
     public function isExpired()
     {
         return time() >= $this->createDate + $this->expiresIn;
