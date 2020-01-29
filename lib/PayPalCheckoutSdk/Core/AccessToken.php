@@ -2,7 +2,6 @@
 
 namespace PayPalCheckoutSdk\Core;
 
-
 class AccessToken
 {
     /**

@@ -25,4 +25,3 @@ class AccessTokenRequest extends HttpRequest
         $this->headers['Authorization'] = 'Basic '.$environment->authorizationString();
     }
 }
-
