@@ -44,4 +44,28 @@ class AccessToken
     {
         return time() >= $this->createDate + $this->expiresIn;
     }
+
+    /**
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTokenType()
+    {
+        return $this->tokenType;
+    }
+
+    /**
+     * @return int
+     */
+    public function getExpiresIn()
+    {
+        return $this->expiresIn;
+    }
 }
