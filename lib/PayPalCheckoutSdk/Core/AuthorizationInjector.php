@@ -24,7 +24,7 @@ class AuthorizationInjector implements Injector
     private $refreshToken;
 
     /**
-     * @var
+     * @var AccessToken|null
      */
     public $accessToken;
 
