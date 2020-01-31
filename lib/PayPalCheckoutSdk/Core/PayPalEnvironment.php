@@ -12,7 +12,7 @@ abstract class PayPalEnvironment implements Environment
     private $clientId;
 
     /**
-     * @var string 
+     * @var string
      */
     private $clientSecret;
 
@@ -31,6 +31,6 @@ abstract class PayPalEnvironment implements Environment
      */
     public function authorizationString()
     {
-        return base64_encode($this->clientId . ':' . $this->clientSecret);
+        return base64_encode($this->clientId.':'.$this->clientSecret);
     }
 }

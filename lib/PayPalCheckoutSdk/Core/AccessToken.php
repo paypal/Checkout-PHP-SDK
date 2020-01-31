@@ -27,7 +27,7 @@ class AccessToken
     /**
      * @param string $token
      * @param string $tokenType
-     * @param int $expiresIn
+     * @param int    $expiresIn
      */
     public function __construct($token, $tokenType, $expiresIn)
     {
