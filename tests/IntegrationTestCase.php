@@ -14,7 +14,7 @@ class IntegrationTestCase extends TestCase
     protected $client;
 
     /**
-     * setUp
+     * @inheritDoc
      */
     protected function setUp()
     {
@@ -24,7 +24,7 @@ class IntegrationTestCase extends TestCase
     }
 
     /**
-     * tearDown
+     * @inheritDoc
      */
     protected function tearDown()
     {

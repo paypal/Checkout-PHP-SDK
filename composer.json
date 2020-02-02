@@ -30,8 +30,9 @@
         "symfony/var-dumper": "^3.4"
     },
     "scripts": {
-        "unit": "phpunit --testsuite unit",
-        "integration": "phpunit --testsuite integration"
+        "full": "phpunit --testsuite full --configuration phpunit.xml",
+        "unit": "phpunit --testsuite unit --configuration phpunit.xml",
+        "integration": "phpunit --testsuite integration --configuration phpunit.xml"
     },
     "config": {
         "platform": {

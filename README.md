@@ -166,11 +166,16 @@ Status: COMPLETED
 ```
 
 ## Running tests
-
 To run integration tests using your client id and secret, clone this repository and run the following command:
 ```sh
 $ composer install
-$ CLIENT_ID=YOUR_SANDBOX_CLIENT_ID CLIENT_SECRET=OUR_SANDBOX_CLIENT_SECRET composer integration
+$ cp phpunit.xml.dist phpunit.xml
+```
+Now add the client id and the client secret to the phpunit.xml, then the tests can be executed.
+```sh
+$ composer full
+$ composer integration
+$ composer unit
 ```
 
 ## Samples
