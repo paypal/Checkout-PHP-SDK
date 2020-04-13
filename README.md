@@ -113,7 +113,7 @@ Before capture, Order should be approved by the buyer using the approval URL ret
 use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
 // Here, OrdersCaptureRequest() creates a POST request to /v2/checkout/orders
 // $response->result->id gives the orderId of the order created above
-$request = new OrdersCaptureRequest("APPROVED-ORDER-ID");
+$request = new OrdersCaptureRequest("RETRIEVED_REQUEST_TOKEN");
 $request->prefer('return=representation');
 try {
     // Call API with your client and get a response for your call
