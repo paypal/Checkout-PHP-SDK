@@ -1,0 +1,8 @@
+/samples            export-ignore
+/tests              export-ignore
+/.gitattributes     export-ignore
+/.gitignore         export-ignore
+/composer.phar      export-ignore
+/gen.yml            export-ignore
+/init               export-ignore
+/phpunit.xml        export-ignore
