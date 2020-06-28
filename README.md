@@ -166,7 +166,7 @@ You can start off by trying out [creating and capturing an order](/samples/Captu
 
 To try out different samples for both create and authorize intent check [this link](/samples)
 
-Note: Update the `PayPalClient.php` with your sandbox client credentials or pass your client credentials as environment variable whie executing the samples.
+Note: Update the `PayPalClient.php` with your sandbox client credentials or pass your client credentials as environment variable while executing the samples.
 
 
 ## License
