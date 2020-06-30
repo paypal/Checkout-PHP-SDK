@@ -21,5 +21,10 @@ class AuthorizationsVoidRequest extends HttpRequest
         $this->headers["Content-Type"] = "application/json";
     }
 
+    
+    public function prefer($prefer)
+    {
+        $this->headers["Prefer"] = $prefer;
+    }
 
 }
