@@ -13,8 +13,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "PayPalCheckoutSdk\\": "lib/PayPalCheckoutSdk",
-            "Sample\\":"samples/"
+            "PayPalCheckoutSdk\\": "lib/PayPalCheckoutSdk"
         }
     },
     "autoload-dev": {
