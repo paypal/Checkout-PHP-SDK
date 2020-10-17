@@ -1,25 +1,22 @@
 <?php
 
-
-
-namespace Test\Orders;
-
-use PHPUnit\Framework\TestCase;
+namespace Test\Integration\Orders;
 
 use PayPalCheckoutSdk\Orders\OrdersAuthorizeRequest;
-use Test\TestHarness;
+use Test\IntegrationTestCase;
 
-
-class OrdersAuthorizeTest extends TestCase
+class OrdersAuthorizeRequestTest extends IntegrationTestCase
 {
+    /**
+     * testOrdersAuthorizeRequest
+     */
     public function testOrdersAuthorizeRequest()
     {
         $this->markTestSkipped("Need an approved Order ID to execute this test.");
         $request = new OrdersAuthorizeRequest('ORDER-ID');
         $request->body = $this->buildRequestBody();
 
-        $client = TestHarness::client();
-        $response = $client->execute($request);
+        $response = $this->client->execute($request);
         $this->assertEquals(201, $response->statusCode);
         $this->assertNotNull($response->result);
     }

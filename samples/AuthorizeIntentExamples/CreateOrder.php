@@ -2,7 +2,7 @@
 
 namespace Sample\AuthorizeIntentExamples;
 
-require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__.'/../../vendor/autoload.php';
 
 use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
 use Sample\PayPalClient;
@@ -12,7 +12,7 @@ class CreateOrder
     /**
      * Setting up the JSON request body for creating the Order with complete request body. The Intent in the
      * request body should be set as "AUTHORIZE" for authorize intent flow.
-     * 
+     *
      */
     private static function buildRequestBody()
     {
@@ -133,7 +133,7 @@ class CreateOrder
     /**
      * Setting up the JSON request body for creating the Order with minimum request body. The Intent in the
      * request body should be set as "AUTHORIZE" for authorize intent flow.
-     * 
+     *
      */
     private static function buildMinimumRequestBody()
     {
@@ -142,7 +142,7 @@ class CreateOrder
             'application_context' =>
                 array(
                     'return_url' => 'https://example.com/return',
-                    'cancel_url' => 'https://example.com/cancel'
+                    'cancel_url' => 'https://example.com/cancel',
                 ),
             'purchase_units' =>
                 array(
@@ -151,10 +151,10 @@ class CreateOrder
                             'amount' =>
                                 array(
                                     'currency_code' => 'USD',
-                                    'value' => '220.00'
-                                )
-                        )
-                )
+                                    'value' => '220.00',
+                                ),
+                        ),
+                ),
         );
     }
 
@@ -162,7 +162,7 @@ class CreateOrder
      * This is the sample function which can be used to create an order. It uses the
      * JSON body returned by buildRequestBody() to create an new Order.
      */
-    public static function createOrder($debug=false)
+    public static function createOrder($debug = false)
     {
         $request = new OrdersCreateRequest();
         $request->headers["prefer"] = "return=representation";
@@ -170,22 +170,20 @@ class CreateOrder
 
         $client = PayPalClient::client();
         $response = $client->execute($request);
-        if ($debug)
-        {
+        if ($debug) {
             print "Status Code: {$response->statusCode}\n";
             print "Status: {$response->result->status}\n";
             print "Order ID: {$response->result->id}\n";
             print "Intent: {$response->result->intent}\n";
             print "Links:\n";
-            foreach($response->result->links as $link)
-            {
+            foreach ($response->result->links as $link) {
                 print "\t{$link->rel}: {$link->href}\tCall Type: {$link->method}\n";
             }
 
             print "Gross Amount: {$response->result->purchase_units[0]->amount->currency_code} {$response->result->purchase_units[0]->amount->value}\n";
 
             // To toggle printing the whole response body comment/uncomment below line
-             echo json_encode($response->result, JSON_PRETTY_PRINT), "\n";
+            echo json_encode($response->result, JSON_PRETTY_PRINT), "\n";
         }
 
 
@@ -196,7 +194,7 @@ class CreateOrder
      * This is the sample function which can be used to create an order. It uses the
      * JSON body returned by buildMinimumRequestBody() to create an new Order.
      */
-    public static function createOrderWithMinimumBody($debug=false)
+    public static function createOrderWithMinimumBody($debug = false)
     {
         $request = new OrdersCreateRequest();
         $request->headers["prefer"] = "return=representation";
@@ -204,16 +202,14 @@ class CreateOrder
 
         $client = PayPalClient::client();
         $response = $client->execute($request);
-        if ($debug)
-        {
+        if ($debug) {
             print "Order With Minimum Body\n";
             print "Status Code: {$response->statusCode}\n";
             print "Status: {$response->result->status}\n";
             print "Order ID: {$response->result->id}\n";
             print "Intent: {$response->result->intent}\n";
             print "Links:\n";
-            foreach($response->result->links as $link)
-            {
+            foreach ($response->result->links as $link) {
                 print "\t{$link->rel}: {$link->href}\tCall Type: {$link->method}\n";
             }
 
@@ -229,9 +225,7 @@ class CreateOrder
 }
 
 
-
-if (!count(debug_backtrace()))
-{
+if (!count(debug_backtrace())) {
     CreateOrder::createOrder(true);
     CreateOrder::createOrderWithMinimumBody(true);
 }
