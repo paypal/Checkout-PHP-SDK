@@ -4,6 +4,7 @@ namespace Sample;
 
 use PayPalCheckoutSdk\Core\PayPalHttpClient;
 use PayPalCheckoutSdk\Core\SandboxEnvironment;
+use PayPalCheckoutSdk\Core\ProductionEnvironment;
 
 ini_set('error_reporting', E_ALL); // or error_reporting(E_ALL);
 ini_set('display_errors', '1');
@@ -31,5 +32,9 @@ class PayPalClient
         $clientId = getenv("CLIENT_ID") ?: "<<PAYPAL-CLIENT-ID>>";
         $clientSecret = getenv("CLIENT_SECRET") ?: "<<PAYPAL-CLIENT-SECRET>>";
         return new SandboxEnvironment($clientId, $clientSecret);
+        
+        // Production Environment
+        // return new ProductionEnvironment($clientId, $clientSecret);
+        
     }
 }
