@@ -5,8 +5,8 @@ namespace Sample\CaptureIntentExamples;
 require __DIR__ . '/../../vendor/autoload.php';
 
 
+use PayPalCheckoutSdk\Requests\Orders\OrdersCreateRequest;
 use Sample\PayPalClient;
-use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
 
 class CreateOrder
 {

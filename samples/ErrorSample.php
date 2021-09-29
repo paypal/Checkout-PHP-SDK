@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
+use PayPalCheckoutSdk\Requests\Orders\OrdersCreateRequest;
 use Sample\PayPalClient;
 use PayPalHttp\HttpException;
 

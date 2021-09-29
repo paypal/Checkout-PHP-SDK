@@ -1,19 +1,21 @@
 <?php
 
-namespace PayPalCheckoutSdk\Core;
+namespace PayPalCheckoutSdk\Requests\Token;
 
+use PayPalCheckoutSdk\Core\PayPalEnvironment;
 use PayPalHttp\HttpRequest;
 
 class AccessTokenRequest extends HttpRequest
 {
-    public function __construct(PayPalEnvironment $environment, $refreshToken = NULL)
+    public function __construct(PayPalEnvironment $environment)
     {
         parent::__construct("/v1/oauth2/token", "POST");
-        $this->headers["Authorization"] = "Basic " . $environment->authorizationString();
+        $this->headers["Authorization"] = $environment->basicAuthorizationString();
         $body = [
             "grant_type" => "client_credentials"
         ];
 
+        $refreshToken = $environment->getRefreshToken();
         if (!is_null($refreshToken))
         {
             $body["grant_type"] = "refresh_token";

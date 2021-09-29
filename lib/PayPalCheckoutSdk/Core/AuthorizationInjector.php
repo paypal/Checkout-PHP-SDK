@@ -2,49 +2,57 @@
 
 namespace PayPalCheckoutSdk\Core;
 
+use PayPalCheckoutSdk\Requests\Token\AccessTokenRequest;
+use PayPalCheckoutSdk\Requests\Token\RefreshTokenRequest;
 use PayPalHttp\HttpRequest;
 use PayPalHttp\Injector;
 use PayPalHttp\HttpClient;
 
 class AuthorizationInjector implements Injector
 {
+    const BEARER_PREFIX = 'Bearer ';
+    const BASIC_PREFIX = 'Basic ';
+
     private $client;
     private $environment;
-    private $refreshToken;
-    public $accessToken;
 
-    public function __construct(HttpClient $client, PayPalEnvironment $environment, $refreshToken)
+    public function __construct(HttpClient $client, PayPalEnvironment $environment)
     {
         $this->client = $client;
         $this->environment = $environment;
-        $this->refreshToken = $refreshToken;
     }
 
     public function inject($request)
     {
         if (!$this->hasAuthHeader($request) && !$this->isAuthRequest($request))
         {
-            if (is_null($this->accessToken) || $this->accessToken->isExpired())
-            {
-                $this->accessToken = $this->fetchAccessToken();
+            $accessToken = $this->environment->getAccessToken();
+            if (is_null($accessToken) || $accessToken->isExpired()) {
+                $this->fetchAccessToken();
             }
-            $request->headers['Authorization'] = 'Bearer ' . $this->accessToken->token;
+
+            $request->headers['Authorization'] = $this->environment->bearerAuthorizationString();
         }
     }
 
     private function fetchAccessToken()
     {
-        $accessTokenResponse = $this->client->execute(new AccessTokenRequest($this->environment, $this->refreshToken));
+        $accessTokenResponse = $this->client->execute(new AccessTokenRequest($this->environment));
         $accessToken = $accessTokenResponse->result;
-        return new AccessToken($accessToken->access_token, $accessToken->token_type, $accessToken->expires_in);
+
+        $this->environment->saveTokens(
+            $accessToken->access_token,
+            $accessToken->token_type,
+            $accessToken->expires_in
+        );
     }
 
-    private function isAuthRequest($request)
+    private function isAuthRequest($request): bool
     {
         return $request instanceof AccessTokenRequest || $request instanceof RefreshTokenRequest;
     }
 
-    private function hasAuthHeader(HttpRequest $request)
+    private function hasAuthHeader(HttpRequest $request): bool
     {
         return array_key_exists("Authorization", $request->headers);
     }

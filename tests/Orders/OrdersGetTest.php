@@ -4,9 +4,9 @@
 
 namespace Test\Orders;
 
+use PayPalCheckoutSdk\Requests\Orders\OrdersGetRequest;
 use PHPUnit\Framework\TestCase;
 
-use PayPalCheckoutSdk\Orders\OrdersGetRequest;
 use Test\TestHarness;
 
 

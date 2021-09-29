@@ -3,8 +3,9 @@
 namespace Sample;
 
 require __DIR__ . '/../vendor/autoload.php';
+
+use PayPalCheckoutSdk\Requests\Payments\CapturesRefundRequest;
 use Sample\PayPalClient;
-use PayPalCheckoutSdk\Payments\CapturesRefundRequest;
 
 class RefundOrder
 {

@@ -4,10 +4,10 @@
 
 namespace Test\Orders;
 
+use PayPalCheckoutSdk\Requests\Orders\OrdersGetRequest;
+use PayPalCheckoutSdk\Requests\Orders\OrdersPatchRequest;
 use PHPUnit\Framework\TestCase;
 
-use PayPalCheckoutSdk\Orders\OrdersPatchRequest;
-use PayPalCheckoutSdk\Orders\OrdersGetRequest;
 use Test\TestHarness;
 
 
