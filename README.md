@@ -2,14 +2,18 @@
 
 ![Home Image](homepage.jpg)
 
-### To consolidate support across various channels, we have currently turned off the feature of GitHub issues. Please visit https://www.paypal.com/support to submit your request or ask questions within our community forum.
+### Deprecated
 
-__Welcome to PayPal PHP SDK__. This repository contains PayPal's PHP SDK and samples for [v2/checkout/orders](https://developer.paypal.com/docs/api/orders/v2/) and [v2/payments](https://developer.paypal.com/docs/api/payments/v2/) APIs.
+This repo is no longer actively maintained. Please integrate using the [REST API](https://developer.paypal.com/docs/api/orders/v2/).
 
-This is a part of the next major PayPal SDK. It includes a simplified interface to only provide simple model objects and blueprints for HTTP calls. This repo currently contains functionality for PayPal Checkout APIs which includes [Orders V2](https://developer.paypal.com/docs/api/orders/v2/) and [Payments V2](https://developer.paypal.com/docs/api/payments/v2/).
+To get early access to the next PHP SDK, please subscribe to [this Github issue]().
 
-Please refer to the [PayPal Checkout Integration Guide](https://developer.paypal.com/docs/checkout/) for more information. 
+**Welcome to PayPal PHP SDK**. This repository contains PayPal's PHP SDK and samples for [v2/checkout/orders](https://developer.paypal.com/docs/api/orders/v2/) and [v2/payments](https://developer.paypal.com/docs/api/payments/v2/) APIs.
+
+This SDK includes a simplified interface to only provide simple model objects and blueprints for HTTP calls. This repo currently contains functionality for PayPal Checkout APIs which includes [Orders V2](https://developer.paypal.com/docs/api/orders/v2/) and [Payments V2](https://developer.paypal.com/docs/api/payments/v2/).
+
 ## Latest Updates
+
 Beginning January 2020, PayPal will require an update on the Personal Home Page (PHP) Checkout Software Developer Kit (SDK) to version 1.0.1. Merchants who have not updated their PHP Checkout SDK to version 1.0.1 will not be able to deserialize responses using outdated SDK integrations.
 All PHP Checkout SDK integrations are expected to be updated by March 1, 2020. Merchants are encouraged to prepare for the update as soon as possible to avoid possible service disruption.
 The Status Page has been updated with this information. The bulletin can be found [here](https://www.paypal-status.com/history/eventdetails/11015)
@@ -26,9 +30,10 @@ An environment which supports TLS 1.2 (see the TLS-update site for more informat
 
 It is not mandatory to fork this repository for using the PayPal SDK. You can refer [PayPal Checkout Server SDK](https://developer.paypal.com/docs/checkout/reference/server-integration) for configuring and working with SDK without forking this code.
 
-For contributing or referring the samples, You can fork/refer this repository. 
+For contributing or referring the samples, You can fork/refer this repository.
 
 ### Setting up credentials
+
 Get client ID and client secret by going to https://developer.paypal.com/developer/applications and generating a REST API app. Get <b>Client ID</b> and <b>Secret</b> from there.
 
 ```php
@@ -44,8 +49,11 @@ $client = new PayPalHttpClient($environment);
 ```
 
 ## Examples
+
 ### Creating an Order
+
 #### Code:
+
 ```php
 // Construct a request object and set desired parameters
 // Here, OrdersCreateRequest() creates a POST request to /v2/checkout/orders
@@ -64,13 +72,13 @@ $request->body = [
                      "application_context" => [
                           "cancel_url" => "https://example.com/cancel",
                           "return_url" => "https://example.com/return"
-                     ] 
+                     ]
                  ];
 
 try {
     // Call API with your client and get a response for your call
     $response = $client->execute($request);
-    
+
     // If call returns body in response, you can get the deserialized version from the result attribute of the response
     print_r($response);
 }catch (HttpException $ex) {
@@ -78,7 +86,9 @@ try {
     print_r($ex->getMessage());
 }
 ```
+
 #### Example Output:
+
 ```
 Status Code: 201
 Id: 8GB67279RC051624C
@@ -109,8 +119,11 @@ Status: CREATED
 ```
 
 ## Capturing an Order
+
 Before capture, Order should be approved by the buyer using the approval URL returned in the create order response.
+
 ### Code to Execute:
+
 ```php
 use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
 // Here, OrdersCaptureRequest() creates a POST request to /v2/checkout/orders
@@ -120,7 +133,7 @@ $request->prefer('return=representation');
 try {
     // Call API with your client and get a response for your call
     $response = $client->execute($request);
-    
+
     // If call returns body in response, you can get the deserialized version from the result attribute of the response
     print_r($response);
 }catch (HttpException $ex) {
@@ -130,6 +143,7 @@ try {
 ```
 
 #### Example Output:
+
 ```
 Status Code: 201
 Id: 8GB67279RC051624C
@@ -157,6 +171,7 @@ Status: COMPLETED
 ## Running tests
 
 To run integration tests using your client id and secret, clone this repository and run the following command:
+
 ```sh
 $ composer install
 $ CLIENT_ID=YOUR_SANDBOX_CLIENT_ID CLIENT_SECRET=OUR_SANDBOX_CLIENT_SECRET composer integration
@@ -170,6 +185,6 @@ To try out different samples for both create and authorize intent check [this li
 
 Note: Update the `PayPalClient.php` with your sandbox client credentials or pass your client credentials as environment variable while executing the samples.
 
-
 ## License
-Code released under [SDK LICENSE](LICENSE)  
+
+Code released under [SDK LICENSE](LICENSE)
