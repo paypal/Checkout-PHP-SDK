@@ -8,7 +8,7 @@ class WebhooksDeleteRequest extends HttpRequest
 {
     function __construct($webhookId)
     {
-        parent::__construct("/v1/notifications/webhooks/{webhook_id}", "DELETE");
+        parent::__construct("/v1/notifications/webhooks/".$webhookId, "DELETE");
         $this->headers["Content-Type"] = "application/json";
     }
 
